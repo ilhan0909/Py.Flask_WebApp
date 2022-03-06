@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Page - website of İlhan</title>
+    {% if title %}
+        <title>FlaskBlog - {{ title }}</title>
+    {% else %}
+        <title>FlaskBlog </title>
+    {% endif %}
+    <title>Home Page - Blog with Flask</title>
 </head>
 <body>
-    <h1>Welcome to Home Page of İlhan!</h1>
+    {% for post in posts %}
+        <h1>{{ post.title }}</h1>
+        <p>By {{ post. author }} on {{ post.date_posted }}</p>
+        <p>{{ post.content }}</p>
+    {% endfor %}
 </body>
 </html>
