@@ -1,9 +1,11 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flaskweb.models import User
+
+######################REGISTRATION FORM##############################
 
 class RegistrationForm(FlaskForm):
 
@@ -23,13 +25,16 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError('That email is already have a registered account, please write different email.')
 
+#######################LOGIN FORM############################
 
 class LoginForm(FlaskForm):
+
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+########################ACCOUNT UPDATE FORM#################
 
 class UpdateAccountForm(FlaskForm):
 
@@ -50,3 +55,10 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('That email is already have a registered account, please write different email.')
 
+########################POST FORM##########################
+
+class PostForm(FlaskForm):
+
+    title = StringField('Title', validators=[DataRequired()])
+    content = TextAreaField('Content', validators=[DataRequired()])
+    submit = SubmitField('Post')
