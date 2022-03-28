@@ -27,4 +27,11 @@ mail = Mail(app)
 
 ##routes should be imported after app initialisation.cuz we need to stop circular imports##
 
-from flaskweb import routes
+from flaskweb.users.routes import users
+from flaskweb.posts.routes import posts
+from flaskweb.main.routes import main
+
+app.register_blueprint(users)
+app.register_blueprint(posts)
+app.register_blueprint(main)
+
