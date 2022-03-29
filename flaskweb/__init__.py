@@ -5,6 +5,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flaskweb.config import Config
 
+
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
@@ -13,6 +14,7 @@ login_manager.login_message_category = 'info'
 mail = Mail()
 
 ##routes should be imported after app initialisation.cuz we need to stop circular imports##
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -26,8 +28,10 @@ def create_app(config_class=Config):
     from flaskweb.users.routes import users
     from flaskweb.posts.routes import posts
     from flaskweb.main.routes import main
+    from flaskweb.errors.handlers import errors
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
+    app.register_blueprint(errors)
 
     return app
