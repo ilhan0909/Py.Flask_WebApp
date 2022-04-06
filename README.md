@@ -1,2 +1,2 @@
 # PyFlask WebApp
-Website made using Python and Flask
+Website made from scratch using Python and Flask Framework
